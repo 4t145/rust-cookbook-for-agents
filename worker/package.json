@@ -1,0 +1,13 @@
+{
+  "name": "rcfa-installer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "embed": "node ./scripts/embed.mjs",
+    "check": "node ./scripts/embed.mjs && wrangler deploy --dry-run --outdir ./.wrangler/dry-run",
+    "deploy": "node ./scripts/embed.mjs && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.164.0"
+  }
+}
