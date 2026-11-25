@@ -1,0 +1,11 @@
+{
+  "name": "rust-cookbook-for-agents",
+  "displayName": "Rust Cookbook for Agents",
+  "version": "0.1.0",
+  "description": "Rational, idiomatic Rust coding guidelines and architectural patterns (Accessor, Typestate, Capability Tokens, Deep Modules) for AI coding agents.",
+  "author": {
+    "name": "4t145",
+    "url": "https://github.com/4t145"
+  },
+  "repository": "https://github.com/4t145/rust-cookbook-for-agents"
+}
