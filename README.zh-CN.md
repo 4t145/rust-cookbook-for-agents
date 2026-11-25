@@ -33,7 +33,7 @@
 
 ```bash
 # 默认挂载英文版（更省 Token）；若偏好默认挂载中文版可在末尾加 ` -s -- --zh`
-curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/install.sh | bash
+curl -fsSL https://rcfa.4t145.com/install.sh | bash
 ```
 
 在任意 Rust 项目根目录下的日常用法：
@@ -52,10 +52,10 @@ rcfa unlink       # 移除当前项目的软链接
 
 ```bash
 # 拉取英文版（Token 更紧凑）
-curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/AGENTS.md -o AGENTS.md
+curl -fsSL https://rcfa.4t145.com/AGENTS.md -o AGENTS.md
 
 # 拉取简体中文版
-curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/AGENTS.zh-CN.md -o AGENTS.md
+curl -fsSL https://rcfa.4t145.com/AGENTS.zh-CN.md -o AGENTS.md
 ```
 
 *（若使用的工具读取 `CLAUDE.md`，可将 `-o AGENTS.md` 改为 `-o CLAUDE.md`，或执行 `ln -s AGENTS.md CLAUDE.md`。）*

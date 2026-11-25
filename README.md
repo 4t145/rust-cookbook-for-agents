@@ -33,7 +33,7 @@ Install once to symlink `AGENTS.md` into any new or cloned Rust repository **wit
 
 ```bash
 # Install (defaults to English AGENTS.md; pass `-s -- --zh` to default to Chinese)
-curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/install.sh | bash
+curl -fsSL https://rcfa.4t145.com/install.sh | bash
 ```
 
 Daily usage inside any Rust project root:
@@ -52,10 +52,10 @@ Drop directly into any Rust repository (compatible with Codex, Claude Code, Curs
 
 ```bash
 # English edition
-curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/AGENTS.md -o AGENTS.md
+curl -fsSL https://rcfa.4t145.com/AGENTS.md -o AGENTS.md
 
 # Chinese edition (简体中文)
-curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/AGENTS.zh-CN.md -o AGENTS.md
+curl -fsSL https://rcfa.4t145.com/AGENTS.zh-CN.md -o AGENTS.md
 ```
 
 *(If your tool reads `CLAUDE.md`, write `-o CLAUDE.md` or run `ln -s AGENTS.md CLAUDE.md`.)*
