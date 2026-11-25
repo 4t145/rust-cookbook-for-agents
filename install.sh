@@ -20,9 +20,9 @@ while [[ $# -gt 0 ]]; do
       cat <<'EOF'
 Usage: ./install.sh [--en | --zh]
 
-Installs the `rust-ai` CLI helper into ~/.local/bin/rust-ai.
-  --en    Default `rust-ai` to English AGENTS.md (default)
-  --zh    Default `rust-ai` to Chinese AGENTS.zh-CN.md
+Installs the `rcfa` CLI helper into ~/.local/bin/rcfa.
+  --en    Default `rcfa` to English AGENTS.md (default)
+  --zh    Default `rcfa` to Chinese AGENTS.zh-CN.md
 EOF
       exit 0
       ;;
@@ -50,7 +50,7 @@ fi
 
 mkdir -p "$BIN_DIR"
 
-cat > "${BIN_DIR}/rust-ai" <<EOF
+cat > "${BIN_DIR}/rcfa" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -90,7 +90,7 @@ while [[ \$# -gt 0 ]]; do
       ;;
     -h|--help)
       cat <<'HELP'
-Usage: rust-ai [link | copy | unlink | update] [--en | --zh]
+Usage: rcfa [link | copy | unlink | update] [--en | --zh]
 
 Commands:
   link     Symlink AGENTS.md into current project and add to .git/info/exclude (default)
@@ -105,7 +105,7 @@ HELP
       exit 0
       ;;
     *)
-      echo "Unknown argument: \$1 (run 'rust-ai --help' for usage)" >&2
+      echo "Unknown argument: \$1 (run 'rcfa --help' for usage)" >&2
       exit 1
       ;;
   esac
@@ -157,7 +157,7 @@ case "\$ACTION" in
       removed=1
     fi
     if [[ "\$removed" -eq 0 ]]; then
-      echo "No rust-ai symlink found in current directory."
+      echo "No rcfa symlink found in current directory."
     fi
     ;;
   update)
@@ -167,12 +167,12 @@ case "\$ACTION" in
 esac
 EOF
 
-chmod +x "${BIN_DIR}/rust-ai"
-echo "Installed rust-ai to ${BIN_DIR}/rust-ai (source: ${REPO_DIR}, default lang: ${DEFAULT_LANG})"
+chmod +x "${BIN_DIR}/rcfa"
+echo "Installed rcfa to ${BIN_DIR}/rcfa (source: ${REPO_DIR}, default lang: ${DEFAULT_LANG})"
 
 case ":${PATH}:" in
   *":${BIN_DIR}:"*) ;;
   *)
-    echo "Note: add ${BIN_DIR} to your PATH to invoke 'rust-ai' directly."
+    echo "Note: add ${BIN_DIR} to your PATH to invoke 'rcfa' directly."
     ;;
 esac

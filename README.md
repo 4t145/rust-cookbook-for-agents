@@ -27,23 +27,23 @@ Modern LLMs know Rust syntax well, yet routinely produce un-idiomatic architectu
 
 ## Quick Start
 
-### Option 1: `rust-ai` CLI Helper (Recommended for Multi-Project Sync)
+### Option 1: `rcfa` CLI Helper (Recommended for Multi-Project Sync)
 
 Install once to symlink `AGENTS.md` into any new or cloned Rust repository **without polluting `git status`** (automatically added to `.git/info/exclude`), and sync upstream updates across all projects with one command:
 
 ```bash
-# Install (defaults to English AGENTS.md; pass `--zh` to default to Chinese)
+# Install (defaults to English AGENTS.md; pass `-s -- --zh` to default to Chinese)
 curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main/install.sh | bash
 ```
 
 Daily usage inside any Rust project root:
 
 ```bash
-rust-ai           # Symlink AGENTS.md + add to .git/info/exclude (or layer into .agents/rules/ if AGENTS.md already exists)
-rust-ai --zh      # Symlink the Chinese edition (AGENTS.zh-CN.md -> ./AGENTS.md)
-rust-ai copy      # Copy a standalone AGENTS.md file (when you want to commit it to Git)
-rust-ai update    # Pull latest upstream changes (instantly updates all symlinked projects)
-rust-ai unlink    # Remove the symlink from the current project
+rcfa              # Symlink AGENTS.md + add to .git/info/exclude (or layer into .agents/rules/ if AGENTS.md already exists)
+rcfa --zh         # Symlink the Chinese edition (AGENTS.zh-CN.md -> ./AGENTS.md)
+rcfa copy         # Copy a standalone AGENTS.md file (when you want to commit it to Git)
+rcfa update       # Pull latest upstream changes (instantly updates all symlinked projects)
+rcfa unlink       # Remove the symlink from the current project
 ```
 
 ### Option 2: Zero-Install Single-File Fetch

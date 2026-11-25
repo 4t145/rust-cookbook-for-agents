@@ -27,9 +27,9 @@
 
 ## 快速接入
 
-### 方式 1：安装 `rust-ai` 命令行工具（推荐：多项目软链接 + 一键热更新，不污染 Git）
+### 方式 1：安装 `rcfa` 命令行工具（推荐：多项目软链接 + 一键热更新，不污染 Git）
 
-安装一次后，每次新建或拉取任何开源/团队 Rust 项目只需敲一行 `rust-ai`，即可自动软链接规范并写入 `.git/info/exclude`（Git 本地私有忽略，`git status` 完全干净）：
+安装一次后，每次新建或拉取任何开源/团队 Rust 项目只需敲一行 `rcfa`（**R**ust **C**ookbook **F**or **A**gents），即可自动软链接规范并写入 `.git/info/exclude`（Git 本地私有忽略，`git status` 完全干净）：
 
 ```bash
 # 默认挂载英文版（更省 Token）；若偏好默认挂载中文版可在末尾加 ` -s -- --zh`
@@ -39,11 +39,11 @@ curl -fsSL https://raw.githubusercontent.com/4t145/rust-cookbook-for-agents/main
 在任意 Rust 项目根目录下的日常用法：
 
 ```bash
-rust-ai           # 软链接 AGENTS.md 并加入本地 Git 忽略（若项目已有团队 AGENTS.md，会自动挂载到 .agents/rules/ 叠加生效）
-rust-ai --zh      # 软链接中文版规范（AGENTS.zh-CN.md -> ./AGENTS.md）
-rust-ai copy      # 拷贝独立实体文件到当前目录（适合需要随项目提交 Git 的场景，可配 --zh）
-rust-ai update    # 拉取 GitHub 最新规范，本机所有软链接过的项目瞬间同步生效
-rust-ai unlink    # 移除当前项目的软链接
+rcfa              # 软链接 AGENTS.md 并加入本地 Git 忽略（若项目已有团队 AGENTS.md，会自动挂载到 .agents/rules/ 叠加生效）
+rcfa --zh         # 软链接中文版规范（AGENTS.zh-CN.md -> ./AGENTS.md）
+rcfa copy         # 拷贝独立实体文件到当前目录（适合需要随项目提交 Git 的场景，可配 --zh）
+rcfa update       # 拉取 GitHub 最新规范，本机所有软链接过的项目瞬间同步生效
+rcfa unlink       # 移除当前项目的软链接
 ```
 
 ### 方式 2：零安装单项目直接拉取
