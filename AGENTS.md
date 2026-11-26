@@ -333,15 +333,15 @@ Do not reflexively reach for `Arc<dyn Service + Send + Sync>` out of OOP habit (
 
 ### Concurrent State Management
 
-- **Use Synchronous Locks for Short Critical Sections; NEVER Hold Across `.await`**: Protect pure in-memory state with `std::sync::Mutex` (or `parking_lot`), complete reads/writes inside a tight lexical block so the guard drops immediately, and only then `.await`.
-- **Prefer the Actor Model for Stateful Async Components**: Avoid passing `Arc<tokio::sync::Mutex<BigState>>` around while performing async I/O under lock. Spawn a dedicated background task that exclusively owns the state (driven lock-free via `loop` + `select!`) and expose a lightweight handle wrapping `mpsc::Sender<Command>` (carrying `oneshot::Sender` when replies are needed).
+- **Synchronous Locks for Short Critical Sections; NEVER Hold Across `.await`**: Guard pure in-memory state with `std::sync::Mutex` (or `parking_lot`), finish reads/writes inside a tight block so the guard drops immediately, and only then `.await`.
+- **Actor Model for Stateful Async Components**: Avoid passing `Arc<tokio::sync::Mutex<BigState>>` around while doing async I/O under lock. Spawn a task that exclusively owns the state (driven lock-free via `loop` + `select!`) and expose a lightweight handle wrapping `mpsc::Sender<Command>` (with `oneshot::Sender` for replies).
 
 ### Error Handling
 
-- **Layered Error Types**: Define structured internal and domain errors with `thiserror::Error`. Reserve `anyhow::Error` for uncontrolled external boundaries (network calls, subprocess invocations) and top-level application wiring.
+- **Layered Error Types**: Define structured internal/domain errors with `thiserror::Error`. Reserve `anyhow::Error` for uncontrolled external boundaries (network, subprocesses) and top-level wiring.
 - **Document Error Conditions**: Public functions returning `Result` must include an `# Errors` doc section describing failure conditions.
-- **Never Swallow Errors**: Every error must either be explicitly handled or propagated upward; never silently discard or implicitly conflate distinct error cases.
-- **Ban Bare `unwrap()`**: Refactor control flow to avoid `unwrap()`. Where an invariant is statically guaranteed, use `expect("clear invariant justification")`.
+- **Never Swallow Errors**: Explicitly handle or propagate every error; never silently discard or conflate distinct error cases.
+- **Ban Bare `unwrap()`**: Refactor control flow to avoid `unwrap()`. When an invariant is statically guaranteed, use `expect("clear invariant reason")`.
 
 ---
 
@@ -349,17 +349,17 @@ Do not reflexively reach for `Arc<dyn Service + Send + Sync>` out of OOP habit (
 
 ### Trust Proven Code
 
-- **Prefer Standard Library Combinators Over Manual Indexing**: For string manipulation, use `str::split`, `str::trim`, `str::strip_prefix`, etc., instead of manual byte-index slicing (e.g., write `s.strip_prefix("xxx")` rather than `s.starts_with("xxx").then_some(&s[3..])`).
-- **Do Not Reinvent the Wheel**: When mature ecosystem crates already solve a problem, do not hand-roll a half-baked substitute. Inspect how established crates solve similar problems before building custom infrastructure.
+- **Prefer Standard Library Combinators Over Manual Indexing**: Use `str::split`, `str::trim`, `str::strip_prefix`, etc., instead of byte-index slicing (e.g., `s.strip_prefix("xxx")` over `s.starts_with("xxx").then_some(&s[3..])`).
+- **Do Not Reinvent the Wheel**: Do not hand-roll half-baked substitutes when mature crates solve the problem. Inspect how established crates handle similar needs first.
 
 ### Governing Magic Values
 
-Evaluate literal constants against four tiers before writing them inline:
+Evaluate literal constants against four tiers:
 
-1. **One-off Test Fixtures**: Values used once in a single test may be written inline without ceremony.
-2. **Self-Evident Trivial Constants**: Universal invariants such as `0`, `1`, or `24` hours in a day may be written directly.
-3. **Tunable Operational Parameters**: Values that may vary across environments or runtime deployments belong in configuration structs with sensible defaults.
-4. **Fixed Domain/Protocol Constants**: Non-configurable literals carrying domain meaning must be extracted as named `const` or `static` items.
+1. **One-off Test Fixtures**: Values used once in a single test may be written inline.
+2. **Self-Evident Trivial Constants**: Universal invariants (`0`, `1`, `24` hours/day) may be written directly.
+3. **Tunable Parameters**: Environment- or runtime-tunable values belong in config structs with sensible defaults.
+4. **Fixed Domain/Protocol Constants**: Non-configurable domain literals must be named `const` or `static` items.
 
 ### High-Signal Comments
 
