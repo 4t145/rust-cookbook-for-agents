@@ -14,8 +14,9 @@ Available in two editions:
 
 Modern LLMs know Rust syntax well, yet routinely produce un-idiomatic architectural anti-patterns when left unconstrained: bolting singleton `XxxExt` traits onto concrete structs, scattering parallel `Option` fields across structs, writing 300-line branching functions full of `let mut` flags, wrapping everything in `Arc<dyn Service>` + `async_trait`, or silently dropping uncommitted database transactions.
 
-`rust-cookbook-for-agents` brings rationality back to AI-assisted Rust projects through crisp, enforceable structural rules:
+`rust-cookbook-for-agents` brings holistic systems thinking and battle-tested Rust paradigms to AI-assisted projects:
 
+0. **Quality, Gestalt & *Shì* (势)**: Treat coding as complex systems engineering—grasp the relational whole before touching parts, and reshape boundaries rather than bolting on local patches.
 1. **Module Architecture & Attention Preservation**: Ban `mod.rs`; mirror domain hierarchy in directory structure; enforce **Deep Modules & Narrow Interfaces** (`pub(crate)` by default, no pass-through shallow wrappers).
 2. **Types as Documentation**: Bind mutually exclusive states with payload-bearing `enum`s; **Parse, don't validate** into `Newtype`s at boundaries; leverage standard conversion traits (`From` / `TryFrom` / `!`).
 3. **Accessor Views Over Singleton `XxxExt` Traits**: Never invent one-to-one extension traits for concrete structs; encapsulate secondary namespaces and scoped parameters via `Accessor<C>` views.

@@ -4,6 +4,18 @@ These guidelines apply strictly to hand-written source code in this repository, 
 
 ---
 
+## 0. Core Philosophy: Quality, Gestalt & *Shì* (势)
+
+**Coding is in essence complex systems engineering—it demands a holistic grasp of the system rather than the mechanical assembly of isolated code fragments.** What we call "code quality" is, in its deeper sense, **Quality** (*良质*) itself: something that cannot be exhausted by a single local metric or a one-line definition, yet can be perceived across facets—as **Gestalt** (a whole greater than the sum of its parts), as ***Shì* (势)** (the relational configuration and tension among elements), and as **engineering art and aesthetics**.
+
+Approach complex systems holistically and reject keyhole-style local patching:
+
+- **Whole Before Part**: No struct, function, or module holds meaning in isolation; its meaning lives in its relationships with everything around it. Step back to perceive the surrounding topology and context before editing so new code grows naturally from the existing grain without bolted-on seams.
+- **Shape Code Through Relationships**: Conceptually peer modules and dual operations should share symmetric structures and naming rhythms; subordinate details should recede beneath narrow interfaces; tightly coupled state and behavior belong together, while orthogonal concerns keep clear boundaries.
+- **Use Aesthetic Intuition to Detect Imbalance**: Ugly, contorted code riddled with special cases and pass-through patches is rarely a mere stylistic blemish—it is an alarm that a local change has broken the system's Gestalt and *Shì*. When a new requirement feels awkward to force in, never jam it in just to minimize a local diff; return to the whole-system view, realign conceptual boundaries, and implement cleanly within the reshaped design.
+
+---
+
 ## 1. Module Architecture & Code Organization
 
 ### Submodules & Static Assets
